@@ -16,6 +16,7 @@ resource "libvirt_cloudinit_disk" "win_cidata" {
   name      = "${var.vm_name}-cloudinit.iso"
   pool      = var.pool_iso
   user_data = local.win_userdata
+  format = raw
 }
 
 resource "libvirt_domain" "win_vm" {
@@ -29,7 +30,6 @@ resource "libvirt_domain" "win_vm" {
 
   disk {
     volume_id = libvirt_cloudinit_disk.win_cidata.id
-    scsi = true
   }
 
   network_interface {
