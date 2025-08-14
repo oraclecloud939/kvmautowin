@@ -32,5 +32,5 @@ variable "admin_password" {
 }
 variable "libvirt_uri" {
   type = string
-  default = "quemu:///system"
+  default = "qemu:///system"
 }# da personalizzare
