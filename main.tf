@@ -14,7 +14,7 @@ locals {
 
 resource "libvirt_cloudinit_disk" "win_cidata" {
   name      = "${var.vm_name}-cloudinit.iso"
-  pool      = var.pool
+  pool      = var.pool_iso
   user_data = local.win_userdata
 }
 

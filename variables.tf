@@ -12,6 +12,12 @@ variable "pool" {
   type = string
   default = "windows-base"
 }
+
+variable "pool_iso" {
+  type = string
+  default = "ISO"
+}
+
 variable "memory_mb" {
   type = number
   default = 4096
