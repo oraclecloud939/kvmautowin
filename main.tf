@@ -29,7 +29,7 @@ resource "libvirt_domain" "win_vm" {
 
   disk {
     volume_id = libvirt_cloudinit_disk.win_cidata.id
-    device    = "cdrom"
+    scsi = true
   }
 
   network_interface {
