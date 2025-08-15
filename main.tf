@@ -16,10 +16,12 @@ resource "libvirt_cloudinit_disk" "win_cidata" {
   name      = "${var.vm_name}-cloudinit.iso"
   pool      = var.pool_iso
   user_data = local.win_userdata
-  format = raw
 }
 
 resource "libvirt_domain" "win_vm" {
+
+  depends_on = [libvirt_cloudinit_disk.win_cidata]
+
   name   = var.vm_name
   memory = var.memory_mb
   vcpu   = var.vcpu
@@ -29,7 +31,7 @@ resource "libvirt_domain" "win_vm" {
   }
 
   disk {
-    volume_id = libvirt_cloudinit_disk.win_cidata.id
+    file = "/vstorage/ISO/${libvirt_cloudinit_disk.win_cidata.name}"
   }
 
   network_interface {
